@@ -19,6 +19,7 @@ function createNotes(item){
 function App(){
 
     const [items,setItems]=useState([...notes]);
+    const [val,setVal]=useState("All");
      function addItem(newItem){
          console.log(newItem);
          setItems(prevItems=>{
@@ -29,6 +30,12 @@ function App(){
 
 
      }
+     function changeFilter(newVal){
+
+       setVal(newVal);
+       console.log(newVal);
+
+     }
      function deleteNote(id) {
         setItems(prevNotes => {
           return prevNotes.filter((noteItem, index) => {
@@ -36,9 +43,9 @@ function App(){
           });
         });
       }
-
+    if(val==="All"){
     return (<div> 
-    <Heading></Heading>
+    <Heading onChange={changeFilter}></Heading>
     <CreateNote onAdd={addItem}/>
     {items.map((noteItem,index)=>{
         return (
@@ -47,6 +54,7 @@ function App(){
                 num={index}
                 id={index}
                 title={noteItem.title}
+                user={noteItem.user}
                 content={noteItem.content}
                 onDelete={deleteNote}
             />
@@ -56,6 +64,112 @@ function App(){
     })}
     <Footer></Footer>
     </div>);
+    }
+    else if(val==="Risks"){
+      return (<div> 
+        <Heading onChange={changeFilter}></Heading>
+        <CreateNote onAdd={addItem}/>
+        {items.map((noteItem,index)=>{
+          if(noteItem.title==="Risks"){
+            return (
+                <Note
+                    key={index}
+                    num={index}
+                    id={index}
+                    title={noteItem.title}
+                    user={noteItem.user}
+                    content={noteItem.content}
+                    onDelete={deleteNote}
+                />
+    
+            );
+          }
+    
+        })}
+      
+        <Footer></Footer>
+        </div>);
+
+    }
+    else if(val==="Services"){
+      return (<div> 
+        <Heading onChange={changeFilter}></Heading>
+        <CreateNote onAdd={addItem}/>
+        {items.map((noteItem,index)=>{
+          if(noteItem.title==="Services"){
+            return (
+                <Note
+                    key={index}
+                    num={index}
+                    id={index}
+                    title={noteItem.title}
+                    user={noteItem.user}
+                    content={noteItem.content}
+                    onDelete={deleteNote}
+                />
+    
+            );
+          }
+    
+        })}
+      
+        <Footer></Footer>
+        </div>);
+
+    }
+    else if(val==="General"){
+      return (<div> 
+        <Heading onChange={changeFilter}></Heading>
+        <CreateNote onAdd={addItem}/>
+        {items.map((noteItem,index)=>{
+          if(noteItem.title==="General"){
+            return (
+                <Note
+                    key={index}
+                    num={index}
+                    id={index}
+                    title={noteItem.title}
+                    user={noteItem.user}
+                    content={noteItem.content}
+                    onDelete={deleteNote}
+                />
+    
+            );
+          }
+    
+        })}
+      
+        <Footer></Footer>
+        </div>);
+
+    }
+    else{
+      return (<div> 
+        <Heading onChange={changeFilter}></Heading>
+        <CreateNote onAdd={addItem}/>
+        {items.map((noteItem,index)=>{
+          if(noteItem.title==="Services"){
+            return (
+                <Note
+                    key={index}
+                    num={index}
+                    id={index}
+                    title={noteItem.title}
+                    user={noteItem.user}
+                    content={noteItem.content}
+                    onDelete={deleteNote}
+                />
+    
+            );
+          }
+    
+        })}
+      
+        <Footer></Footer>
+        </div>);
+      
+
+    }
 
 }
 export default App;

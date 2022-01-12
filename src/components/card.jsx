@@ -13,6 +13,7 @@ function Note(props){
     return <div className="note" style={{backgroundColor:colors[curretnTime]}}>
         <h1>{props.title}</h1>
         <p>{props.content}</p>
+        <p>-{props.user}</p>
         <button onClick={handleClick}><i class="fas fa-trash-alt"></i></button>
     </div>;
 }

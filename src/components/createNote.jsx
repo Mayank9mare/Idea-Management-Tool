@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 function CreateNote(props){
     var k=Math.floor(6*Math.random());
-    const [note,setNote]=useState({title: "",content: "",key:k});
+    const [note,setNote]=useState({title: "General",content: "",key:k,user:""});
 
     function handleChange(event) {
         const { name, value } = event.target;
@@ -21,9 +21,10 @@ function CreateNote(props){
         
         props.onAdd(note);//adding the note
         setNote({
-            title:"",
+            title:"General",
             content:"",
-            key:n
+            key:n,
+            user:""
         });
         event.preventDefault();
         //event.preventDefault();//preventing the screem reload
@@ -34,11 +35,7 @@ function CreateNote(props){
     return (
         <div>
             <form className="create-box">
-                <input 
-                    name="title"
-                    onChange={handleChange} 
-                    value={note.title} 
-                    placeholder="Title"/>
+                
                 <textarea 
                     name="content" 
                     onChange={handleChange}
@@ -46,7 +43,23 @@ function CreateNote(props){
                     placeholder="Note..." 
                     rows={3}>
                 </textarea>
-                <button onClick={submitFinal}><i class="fas fa-plus"></i></button>
+                <input
+                    name="user"
+                    onChange={handleChange} 
+                    value={note.user} 
+                    placeholder="User"/>
+            
+                
+                <select 
+                    name="title"
+                    onChange={handleChange} 
+                    value={note.title} 
+                    placeholder="Type">
+                        <option value="General">General</option>
+                        <option value="Risks">Risks</option>
+                        <option value="Services">Services</option>
+                    </select>
+                    <button onClick={submitFinal}><i class="fas fa-plus"></i></button>
             </form>
         </div>
 
